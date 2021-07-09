@@ -1,0 +1,55 @@
+# How I use this is copied into /home/$USER/ and then just run it with `docker-compose up -d`
+
+version: "3"
+
+# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+services:
+  cloudflared:
+    container_name: cloudflared
+    restart: unless-stopped
+    image: crazymax/cloudflared:latest
+    environment:
+      TUNNEL_DNS_PORT: "5053"
+      TUNNEL_DNS_ADDRESS: "0.0.0.0"
+      TUNNEL_DNS_UPSTREAM: "https://1.1.1.1/dns-query,https://1.0.0.1/dns-query"
+    networks:
+      internal:
+        ipv4_address: 172.20.0.2
+
+  pihole:
+    container_name: pihole
+    restart: unless-stopped
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "80:80/tcp"
+      - "443:443/tcp"
+    dns:  # I don't think this is needed, but I left it there anyways.
+      - 127.0.0.1
+      - 1.1.1.1
+    environment:
+      TZ: 'America/Los_Angeles'
+      WEBPASSWORD: 'CHANGETHISTOYOURPASSWORD'
+      DNS1: '172.20.0.2#5053'
+      DNS2: '1.1.1.1'  # You may not need this.
+    # Volumes store your data between container upgrades
+    volumes:
+      - './etc-pihole/:/etc/pihole/'
+      - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+    networks:
+      internal:
+        ipv4_address: 172.20.0.3
+    # Recommended but not required (DHCP needs NET_ADMIN)
+    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+    # cap_add:
+    #  - NET_ADMIN
+    depends_on:
+      - cloudflared
+
+networks:
+  internal:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
