@@ -1,6 +1,6 @@
 # homelab
 
-A repo with information regarding the homelab I use at home.
+A repo with information regarding the homelab I use for myself and hopefully some people can learn from some of my head-wrangling experiences.
 
 
 ## Overview of Physical Environment
@@ -127,3 +127,23 @@ find /where/you/want/to/save -type f -printf '%T@\t%p\n' |
 
 - Discord Bot
   - Not worked on recently, but I use [KoyomiBot](https://github.com/xNinjaKittyx/KoyomiBot) to sometimes replace functionality from huginn.
+
+- Minecraft Server
+  - I ran into this [great article](https://terminalblues.dev/Hiding-Your-Minecraft-Source-IP#DNS) on setting up a reverse proxy on a cloud service like digitalocean so that you can 1) use a domain and 2) not have the domain point directly to your personal IP. (Great when you're playing with an extended group of friends without having to give your real IP)
+  - One thing that's a little tricky is when you want to do a subdomain that has a different IP than your main domain.
+  - Here's how you do it
+```
+Type   |  Name    | Content     | TTL    | Proxy Status
+A      | minecraft| DO ipv4 IP  | Auto   | Proxied
+
+And for the SRV record
+
+Name = play  # for example if you want this to be play.yourdomain.com
+service = _minecraft
+Protocol = TCP
+TTL = Auto
+Priority = 0
+Weight = 5
+Port = 25565
+Target = minecraft.urfmode.moe
+```
