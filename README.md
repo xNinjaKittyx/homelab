@@ -122,4 +122,8 @@ find /where/you/want/to/save -type f -printf '%T@\t%p\n' |
     cut -d $'\t' -f 2- |
     xargs rm || true
 ```
+- Monitoring MB8600 modem
+  - I created a project [here](https://github.com/xNinjaKittyx/mb8600) to start monitoring with grafana 
 
+- Discord Bot
+  - Not worked on recently, but I use [KoyomiBot](https://github.com/xNinjaKittyx/KoyomiBot) to sometimes replace functionality from huginn.
