@@ -99,6 +99,11 @@ vrrp_instance VI_1 {
 ```
 SECONDARY PIHOLE - /etc/keepalived/keepalived.conf
 ```
+vrrp_script chk_pihole {
+    script "/usr/bin/docker exec pihole /usr/local/bin/pihole status | grep enabled"
+    interval 5
+    fall 2
+}
 
 vrrp_instance VI_1 {
         state BACKUP
