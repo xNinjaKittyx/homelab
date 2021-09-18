@@ -73,6 +73,12 @@ A repo with information regarding the homelab I use for myself and hopefully som
   - Related URL: https://www.redhat.com/sysadmin/keepalived-basics
 PRIMARY PIHOLE - /etc/keepalived/keepalived.conf
 ```
+vrrp_script chk_pihole {
+    script "/usr/bin/docker exec pihole /usr/local/bin/pihole status | grep enabled"
+    interval 5
+    fall 2
+}
+
 vrrp_instance VI_1 {
         state MASTER
         interface eth0
@@ -81,10 +87,13 @@ vrrp_instance VI_1 {
         advert_int 1
         authentication {
               auth_type PASS
-              auth_pass 12345  # Modify this password to your tastes
+              auth_pass susaf
         }
         virtual_ipaddress {
-              192.168.x.x/32  # Insert your own address here
+              192.168.5.210/32
+        }
+        track_script {
+              chk_pihole
         }
 }
 ```
@@ -104,10 +113,14 @@ vrrp_instance VI_1 {
         virtual_ipaddress {
               192.168.x.x/32  # Insert the same address/subnet from above
         }
+        track_script {
+              chk_pihole
+        }
 }
 ```
 
   - You can type `ip addr` to check your IPs after starting/restarting `keepalived`. You can stop the primary keepalived to verify that the secondary now gets the shared IP. very nice
+  - Note - I ran into a problem with 2.1.5 having a bug with this. If you notice that chk_pihole doesn't run, make sure your keepalived version isn't 2.1.5
 
 - Backing up Openwrt
 ```
