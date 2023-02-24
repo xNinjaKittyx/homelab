@@ -4,68 +4,75 @@ A repo with information regarding the homelab I use for myself and hopefully som
 
 
 ## Overview of Physical Environment
-
-- UnRaid for storage and the brains of the whole environment.
-- OpnSense Firewall
-- OpenWRT Router running on R7800
-- MB8600 Modem
-- Raspberry pi 4 x2 for Pi-Hole + DoH Cloudflare with HA
-- Mikrotik Switch
-
 ## Docker
 
 - Tools
   - Traefik - used as reverse proxy for both local and remote URLs. Remote is ran behind Cloudflare proxy as well.
   - adminer - A little easier to view internals of various databases
   - ClamAV - Ran once in a while for virus scanning
-  - Scrutiny - reads smart data, i just like seeing the webUI over the raw data.
-  - mailpie - Still haven't fully figured out a way to backup my emails, I'm using this in the meantime
   - privatebin - I use this to send sensitive info over the internet.
+  - Jirafeau - This is a quick file drop server.
+  - xbrowsersync - Synchronize Bookmarks and History across various devices and browsers.
+  - Thunderbird + ProtonMail-Bridge - A way to always have a copy of my emails in thunderbird.
+  - Gitea - Used mostly just to git-control my jenkins scripts.
+  - code-server - A quick way to modify some of my jenkins scripts
+  - SearXNG - An alternative way to search the web.
+  - WikiJS - A wiki server. I use it for storing some of my thoughts as well as documentation.
+  - Uptime Kuma - Showing uptime of various services. Not really useful if it's running on the same server though.
+  - Homepage - Show a homepage of all services.
+  - cloudflareddns - used to automatically update cloudflare DNS A records with my server's external IP address.
 
 - Backup
   - Duplicacy + B2 - B2 is fairly cheap as a backup solution. I used duplicati initially, but it ran into too many random errors making it somewhat unreliable - Duplicacy isn't perfect either, but it works well. The UI/UX is somewhat lacking, but it's good enough. It's also fairly easy to get up and running and test on another computer for restores
   - Jenkins - I use this for random various jobs - mostly local bakups
+  - github-backup - Backing up Github projects in github form.
 
 - Teslamate - Wonderful tool for people who own teslas.
 - Finance
   - firefly + firefly-iii-csv-importer + mysql - A great finance tool for tracking. with the importer, it becomes somewhat automatic. I'll also show some scripts I made to make this a little easier for certain banks
-- epicgames-freegames - Pretty cool tool to get free games in epic games if you're into that.
+- epicgames-freegames - Pretty cool automation tool to fetch free games in epic games if you're into that.
 
-- Notifications
-  - rssbridge - I somehow didn't run into this earlier, I was using an online service initially which i hated using. I use this mostly to grab facebook feeds to automate with huginn
-  - gotify - To send mobile notifications of any kind
-  - healthchecks - Mostly for jenkins and duplicacy to send notifications to gotify.
-  - huginn - Various fun automation scripts. A lot of times better to just make a bot in python, but this is more for people who don't want to code.
-
-- Data Visualization
-  - Chronograf - visualizes influxDB
-  - Prometheus - Use this with pihole statistics and recently replaced telegraf with their node-exporter, since it's a lot more lightweight and easier to use. Not as extensive though
+- Observability
+  - Chronograf - Easy way to manage influxDB.
+  - Prometheus - Queries various URLs to fetch data.
   - Influxdb - time series databaes to store other stuff
   - Grafana - visualize e v e r y t h i n g
-  - SpeedFlux - Some tool to do speedtests and put them into influxdb
+  - caAdvisor - Ingest Docker statistics.
+  - Scrutiny - SMART data visualizer
+  - Gotify - Notification system to nofiy my phone.
 
 - Home Automation
-  - MQTT - Used with devices that I flash [Tasmota](https://github.com/arendst/Tasmota) on.
+  - mosquitto - Used with devices that I flash [Tasmota](https://github.com/arendst/Tasmota) on.
   - tasmoadmin - I don't keep this on, but I use it once in a while. The mass-upgrade tool is quite useful when it works
   - Home Assistant - home automation stuff - For example - turn lightbulbs to a yellower light when the sunsets.
+  - zwavejs2mqtt - Using zWave with Home assistant.
 
 - Monica
   - Monica + MySQL - Personal CRM - I mostly use this as my contacts management. I prefer this over Nextcloud.
 
-- Nextcloud + Joplin - Nextcloud mostly for photo storage. Joplin to replace the somewhat lacking nextcloud notes.
+- Nextcloud - Photo storage
+- Immich - Currently testing to see if this is better for me than NextCloud.
 - firefox-syncserver - Sync tabs and bookmarks with firefox.
 
 - Media Automation & Management
   - lidarr - Organizing music files - Also useful to see if there's other albums you don't have from a particular artist
-  - mango - If you have manga files in electronic form, this is useful
-  - alltube - A youtube-dl wrapper on a webUI. Mostly for family members who aren't as technical.
-  - Organizr - Combine all services into a 1-stop shop
+  - Kavita - If you have manga files or e-books, this is useful for reading that via a web-ui.
   - Plex - I use this mostly for music. Moved my other media stuff to jellyfin.
   - Jellyfin - Media server
-  - ombi + qbittorrent + jackett + sonarr + Shoko - These are all legitimate projects that can be potentially unethical, but the technology behind these projects are all very cool.
+  - jfa-go - Manages Jellyfin users.
+  - Jellyfin-vue - a cool project for upcoming UI changes for Jellyfin
+  - Jellyfin-discord-bot - another cool project to stream jellyfin audio media to discord via casting.
+  - jellyseer, qbittorrent, prowlarr, sonarr, Shoko, Kaizoku - All open source projects with questionable intentions, but still very cool.
 
+- Mattermost
+  - Backup to discord when discord goes down. Still prone to Cloudflare downtime though (which will take both down).
 
 ## Some other cool stuff
+
+- Adguard Home
+  - I use 3x PIs with Portainer + Keepalived + Watchtower + AdguardHome.
+  - Use adguardsync on unraid server to make all 3 pis stay in sync.
+  
 
 - Pi-Hole
   - I found this project recently [gravity-sync](https://github.com/vmstan/gravity-sync) which is great for a Primary-Secondary pi-hole setup.
