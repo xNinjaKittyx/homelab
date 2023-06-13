@@ -1,4 +1,23 @@
-/* Custom CSS for Jellyfin */
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/fixes.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/jf_font.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/base.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/accentlist.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/rounding.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/smallercast.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/episodelist/episodes_grid.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/header/header_transparent.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/login/login_frame.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/fields/fields_noborder.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/cornerindicator/indicator_corner.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/type/dark_withaccent.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/titlepage/title_banner.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/progress/floating.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/effects/hoverglow.css');
+@import url("https://cdn.jsdelivr.net/gh/prayag17/Jellyfin-Icons/round.css");
+
+:root {--accent: 98, 121, 205;}
+:root {--rounding: 12px;}
+
 /* Remove Live TV Channel Listings */
 .guideChannelNumber { display: none; }
 
@@ -7,55 +26,35 @@
 
 /* Login Page */
 #loginPage {
-  background: url("https://a.uguu.se/MVRphpEu.jpg");
-  background-size: cover;
+  background: url("jellyfinlogin/1.jpg")  !important;
+  background-size: cover !important;
 }
-/* Narrow the login form */
-#loginPage .readOnlyContent, #loginPage form {max-width: 22em;}
 
 /* Hide "please login" text, margin is to prevent login form moving too far up */
-#loginPage h1 {display: none}
-#loginPage .padded-left.padded-right.padded-bottom-page {margin-top: 50px}
+#loginPage h1 {display:none;}
+#loginPage .padded-left.padded-right.padded-bottom-page {margin-top: 50px;}
 
 /* Hide "manual" and "forgot" buttons */
 /* #loginPage .raised.cancel.block.btnManual.emby-button {display: none} */
-#loginPage .raised.cancel.block.btnForgotPassword.emby-button {display: none}
+#loginPage .raised.cancel.block.btnForgotPassword.emby-button {display: none;}
 
 /* Background */
 .backdropImage { display: none; }
 
 .backgroundContainer {
   background-color: rgba(0, 0, 0, 0);
-  background-image: url("https://i.redd.it/4sw9dpanwn771.png");
-  filter: blur(10px);
+  background-image: url("jellyfinlogin/2.jpg");
+  filter: blur(8px) saturate(120%) contrast(120%) brightness(40%);
   background-size: cover;
 }
 
-/* Darken background, only works with blue radiance */
-.backgroundContainer {background-color: #000000; filter: brightness(50%);}
-
-/* Transparent Top */
-.skinHeader.focuscontainer-x.skinHeader-withBackground.skinHeader-blurred {background:none; background-color:rgba(0, 0, 0, 0.1);}
-.skinHeader.focuscontainer-x.skinHeader-withBackground.skinHeader-blurred.noHomeButtonHeader {background:none; background-color:rgba(0, 0, 0, 0.5);}
-
-
-/* Size episode preview images in a more compact way */
-.listItemImage.listItemImage-large.itemAction.lazy {height: 110px;}
-.listItem-content {height: 115px;}
-.secondary.listItem-overview.listItemBodyText {height: 61px; margin: 0;}
-
-/* Watched Icon Color */
-.playedIndicator {background: #a3be8c;}
-
-/*Theme some dialogues*/
-.dialog {border-radius: 6px !important; background-color: rgba(0, 0, 0, 0.9);}
-.actionSheetMenuItem:hover {background-color: rgba(0, 164, 220, 0.2);}
-.mainDrawer {background-color: rgba(0, 0, 0, 0.9);}
-.navMenuOption:hover {background: rgba(0, 164, 220, 0.2);}
-
-/* Image Edge Rounded */
-.cardPadder,
-.cardImageContainer,
-.cardOverlayContainer {
-  border-radius: 0.5em;
+/* Server Message */
+#homeTab
+  > div
+  > div.section0:before{
+  content: '⚠ Server Announcement: Please use a client if you are not already https://jellyfin.org/downloads/clients/ ⚠';
+  font-size: 24px;
+  font-weight: normal;
+  text-align: center;
+  display: block;
 }
