@@ -1,0 +1,68 @@
+services:
+    adguardhome:
+        image: adguard/adguardhome
+        container_name: adguardhome
+        restart: unless-stopped
+        volumes:
+            - '/opt/adguardhome/work:/opt/adguardhome/work'
+            - '/opt/adguardhome/conf:/opt/adguardhome/conf'
+        ports:
+            - '53:53/tcp'
+            - '53:53/udp'
+            # - '67:67/udp'  # This is only if you need the dhcp server, which can conflict with some linux services.
+            # - '68:68/udp'
+            - '80:80/tcp'
+            - '443:443/tcp'
+            - '443:443/udp'
+            - '3000:3000/tcp'
+            - '853:853/tcp'
+            - '784:784/udp'
+            - '853:853/udp'
+            - '8853:8853/udp'
+            - '5443:5443/tcp'
+            - '5443:5443/udp'
+        labels:
+            - 'wud.tag.include=latest'
+            - 'wud.watch.digest=true'
+
+    vector:
+        image: timberio/vector:latest-alpine
+        restart: unless-stopped
+        command: --config /etc/vector/vector.toml
+        volumes:
+            - '/opt/adguardhome/work:/opt/adguardhome/work'
+            - '/opt/vector:/etc/vector'
+        labels:
+            - 'wud.tag.include=latest-alpine'
+            - 'wud.watch.digest=true'
+
+    keepalived:
+        image: lettore/keepalived
+        restart: unless-stopped
+        network_mode: "host"
+        cap_add:
+            - NET_ADMIN
+            - NET_BROADCAST
+            - NET_RAW
+        environment:
+            - KEEPALIVED_STATE=MASTER  # Change this to BACKUP for subsequent instances
+            - KEEPALIVED_VIRTUAL_IPS="192.168.x.x"  # Change this to your DNS virtual IP
+            - KEEPALIVED_UNICAST_PEERS="'192.168.x.x', '192.168.x.x'"  # List of machine IPs behind your virtual IP.
+            - KEEPALIVED_INTERFACE=enp1s0
+            - KEEPALIVED_PASSWORD=adguard
+            - KEEPALIVED_PRIORITY=100  # Change this value to a lower value for backup instances
+            - KEEPALIVED_ROUTER_ID=5
+        labels:
+            - 'wud.tag.include=latest'
+            - 'wud.watch.digest=true'
+
+    whatsupdocker:
+        image: getwud/wud
+        container_name: wud
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        ports:
+            - '3500:3000/tcp'
+        labels:
+            - 'wud.tag.include=latest'
+            - 'wud.watch.digest=true'
