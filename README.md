@@ -39,7 +39,9 @@ Almost everything here is containerized with the exception of a few things.
 - Duplicacy is also used to do a local backup to a 2nd server that's running [TrueNAS](https://www.truenas.com/) on [Proxmox VM](https://www.proxmox.com/en/)
 - [Immich](https://github.com/immich-app/immich) and [NextCloud](https://github.com/nextcloud) for phone automated photo backups.
 - [Syncthing](https://github.com/syncthing/syncthing) as a quick way to get files from one device to another.
-- I also host a local [gitea](https://github.com/go-gitea/gitea) server to hold some automation scripts and also to hold a backup from github. 
+- I also host a local [gitea](https://github.com/go-gitea/gitea) server to hold some automation scripts and also to hold a backup from github.
+- [urbackup](https://github.com/uroni/urbackup_backend) to backup windows computers.
+- [bitwarden-secure-sync](https://github.com/AronMarinelli/bitwarden-secure-sync) to backup password manager.
 
 ### AI
 - [ollama](https://github.com/ollama/ollama) - API for model access.
@@ -49,50 +51,49 @@ Almost everything here is containerized with the exception of a few things.
 - And lastly, I have a private rust project to interact with it via discord.
 
 ### RSS
-- [morss]()
-- [rss-bridge]()
-- [FreshRSS]()
+- [morss](https://github.com/xNinjaKittyx/morss) - to convert non-RSS feeds into RSS ones (my own fork).
+- [rss-bridge](https://github.com/RSS-Bridge/rss-bridge) - Easy way to get rss feeds with better filtering.
+- [FreshRSS](https://github.com/FreshRSS/FreshRSS) - WebUI
 - 
 
 ### Gaming
 
 ### Observability
+- [scrutiny](https://github.com/AnalogJ/scrutiny) for SMART reports on drives.
+- [beszel](https://github.com/henrygd/beszel) for quick insights on desktops/servers.
+- [teslamate](https://github.com/teslamate-org/teslamate) ingest data from tesla API.
+- [cable-modem-stats](https://github.com/sarabveer/cable-modem-stats/) ingest data from xFinity modems
+- [pyapcupsdexporter](https://github.com/xNinjaKittyx/pyapcupsdexporter) ingest data from APC UPS
+- [unpoller](https://github.com/unpoller/unpoller) ingest data from Unifi Devices
+- [cadvisor](https://github.com/google/cadvisor) ingest data from current server and drives.
+- [MySpeed](https://github.com/gnmyt/myspeed) - Simple automated speed tests and historical data.
+- [Prometheus](https://github.com/prometheus/prometheus) [Grafana](https://github.com/grafana/grafana) [InfluxDB](https://github.com/influxdata/influxdb) and [Vector](https://github.com/vectordotdev/vector) for routing, graphing, storage, etc.
 
-### Management
+### Management/IT
+- [Portainer](https://github.com/portainer/portainer) to manage remote docker environments
+- [pgAdmin4](https://www.pgadmin.org/download/pgadmin-4-windows/) to manage postgres dbs.
+- [it-tools](https://github.com/sharevb/it-tools)
 
 ### Personal
+- [Wallos]() - simple subscriptions I pay for overview
+- [Monica]() - personal crm.
+- [FireflyIII]() - finances
+- [Dawarich]() - Google Maps Timeline alternative
+- [DumbAssets]() - Used to keep track of maintenance tasks.
+- [Outline]() - wiki of sorts.
+- [Karakeep]() - Previously known as hoarder. A great bookmarking tool.
+- [Privatebin]() - For any E2E required text transfer.
+- [TheLounge]() - IRC needs.
+- [OpenGist]() - any quick saves of text.
+- [Vikunja]() - Todo list.
 
 ### Media
+- [Zipline]() - a photo server, I mostly use for ShareX compatibility.
 
+### Random
+- [Collabora]() - Nextcloud integration with OpenOffice. Basically a Google Docs Suite alternative.
+- [Romm]() - Emulation in the web browser.
 
-
-### (old) Will update later...
-
-
-- Teslamate - Wonderful tool for people who own teslas.
-- Finance
-  - firefly + firefly-iii-csv-importer + mysql - A great finance tool for tracking. with the importer, it becomes somewhat automatic. I'll also show some scripts I made to make this a little easier for certain banks
-
-- Observability
-  - Chronograf - Easy way to manage influxDB.
-  - Prometheus - Queries various URLs to fetch data.
-  - Influxdb - time series databaes to store other stuff
-  - Grafana - visualize e v e r y t h i n g
-  - caAdvisor - Ingest Docker statistics.
-  - Scrutiny - SMART data visualizer
-
-- Monica
-  - Monica + MySQL - Personal CRM - I mostly use this as my contacts management. I prefer this over Nextcloud.
-
-- Media Automation & Management
-  - lidarr - Organizing music files - Also useful to see if there's other albums you don't have from a particular artist
-  - Kavita - If you have manga files or e-books, this is useful for reading that via a web-ui.
-  - Plex - I use this mostly for music. Moved my other media stuff to jellyfin.
-  - Jellyfin - Media server
-  - jfa-go - Manages Jellyfin users.
-  - Jellyfin-vue - a cool project for upcoming UI changes for Jellyfin
-  - Jellyfin-discord-bot - another cool project to stream jellyfin audio media to discord via casting.
-  - jellyseer, qbittorrent, prowlarr, sonarr, Shoko, Kaizoku - All open source projects with questionable intentions, but still very cool.
 
 ## Some other cool stuff
 
