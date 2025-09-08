@@ -75,24 +75,25 @@ Almost everything here is containerized with the exception of a few things.
 - [it-tools](https://github.com/sharevb/it-tools)
 
 ### Personal
-- [Wallos]() - simple subscriptions I pay for overview
-- [Monica]() - personal crm.
-- [FireflyIII]() - finances
-- [Dawarich]() - Google Maps Timeline alternative
-- [DumbAssets]() - Used to keep track of maintenance tasks.
-- [Outline]() - wiki of sorts.
-- [Karakeep]() - Previously known as hoarder. A great bookmarking tool.
-- [Privatebin]() - For any E2E required text transfer.
-- [TheLounge]() - IRC needs.
-- [OpenGist]() - any quick saves of text.
-- [Vikunja]() - Todo list.
+- [Wallos](https://github.com/ellite/Wallos) - simple subscriptions I pay for overview
+- [Monica](https://github.com/monicahq/monica) - personal crm.
+- [FireflyIII](https://github.com/firefly-iii/firefly-iii) - finances
+- [Dawarich](https://github.com/Freika/dawarich) - Google Maps Timeline alternative
+- [DumbAssets](https://github.com/DumbWareio/DumbAssets) - Used to keep track of maintenance tasks.
+- [Outline](https://github.com/outline/outline) - wiki of sorts.
+- [Karakeep](https://github.com/karakeep-app/karakeep) - Previously known as hoarder. A great bookmarking tool. Previously used [Linkwarden]()
+- [Privatebin](https://github.com/PrivateBin/PrivateBin/releases) - For any E2E required text transfer.
+- [TheLounge](https://github.com/thelounge/thelounge) - IRC needs.
+- [OpenGist](https://github.com/thomiceli/opengist) - any quick saves of text.
+- [Vikunja](https://github.com/alpaka-group/vikunja) - Todo list.
 
 ### Media
-- [Zipline]() - a photo server, I mostly use for ShareX compatibility.
+- [Zipline](https://github.com/diced/zipline) - a photo server, I mostly use for ShareX compatibility.
 
 ### Random
 - [Collabora]() - Nextcloud integration with OpenOffice. Basically a Google Docs Suite alternative.
 - [Romm]() - Emulation in the web browser.
+- [matrix]() + [element]()
 
 
 ## Some other cool stuff
